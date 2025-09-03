@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender
 
 class HelpCommand : DeathLogCommand.SubCommand {
     override fun handle(p0: CommandSender, p1: Command, p2: String, p3: Array<out String>): Boolean {
-        if(p3.size == 1) {
+        if(p3.isEmpty() || p3.size == 1) {
             //第二引数がない場合、コマンドヘルプを表示
             p0.sendMessage(Languages.HelpCommand.HELP_MESSAGE)
             return true

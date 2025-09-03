@@ -22,7 +22,11 @@ class DeathLogCommand : CommandExecutor, TabExecutor {
     }
 
     override fun onCommand(p0: CommandSender, p1: Command, p2: String, p3: Array<out String>): Boolean {
-        if(p3.isEmpty() || !subCommands.containsKey(p3[0])){
+        if(p3.isEmpty()){
+            //引数入力がない場合、コマンドヘルプを表示
+            return subCommands["help"]?.handle(p0, p1, p2, p3) ?: return false
+        }
+        if(!subCommands.containsKey(p3[0])){
             //引数入力なし or 第一引数が存在しないサブコマンドだった場合
             p0.sendMessage(Languages.Command.ERROR_INVALID_SUBCOMMAND)
             return true
