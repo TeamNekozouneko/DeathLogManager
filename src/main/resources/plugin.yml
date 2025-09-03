@@ -5,3 +5,20 @@ api-version: '1.21'
 author: RunQ
 description: 死亡ログの受け取り方を任意に選択できるプラグイン
 folia-supported: true
+
+commands:
+  deathlog:
+    description: 死亡ログの受け取り方を設定するコマンド
+    aliases: [killlog, log, dl]
+    permission: deathlog.use
+
+permissions:
+    deathlog.use:
+      default: true
+    deathlog.switch.*:
+      default: true
+      children:
+        deathlog.switch.each: true
+        deathlog.swtich.near: true
+        deathlog.switch.hidden: true
+        deathlog.switch.simple: true
