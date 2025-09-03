@@ -3,7 +3,7 @@ package com.nekozouneko.deathLogManager.wrapper
 object Languages {
     object General {
         val PREFIX = "§8[§6DeathLog§8]"
-        val ERROR_INVALID_RECEIVE_TYPE = "§cそのような受け取り方は存在しません。(each, near, hidden, simple)"
+        val ERROR_INVALID_RECEIVE_TYPE = "§cそのような受け取り方は存在しません。(each, near, self, simple)"
         val ERROR_DATABASE = "§cデータベースにエラーが発生しました。"
     }
     object Command {
