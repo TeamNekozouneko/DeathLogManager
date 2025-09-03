@@ -3,12 +3,13 @@ package com.nekozouneko.deathLogManager
 import org.bukkit.plugin.java.JavaPlugin
 
 class DeathLogManager : JavaPlugin() {
+    companion object {
+        lateinit var instance: JavaPlugin
+    }
 
     override fun onEnable() {
-        // Plugin startup logic
+        instance = this
     }
 
-    override fun onDisable() {
-        // Plugin shutdown logic
-    }
+    override fun onDisable() {}
 }
