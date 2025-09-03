@@ -47,7 +47,7 @@ object Languages {
         }
     }
     object SetCommand{
-        val ERROR_ENTER_RECEIVE_TYPE = "§c受け取り方を指定してください。(each, near, hidden, simple)"
+        val ERROR_ENTER_RECEIVE_TYPE = "§c受け取り方を指定してください。(each, near, self, simple)"
         val ERROR_NOT_ENOUGH_PERMISSION = "§cこの受け取り方を選択する権限がありません。"
         fun SET_RECEIVE_TYPE(type: String) : String {
             return "${General.PREFIX} §a受け取り方を${type}に設定しました！"
