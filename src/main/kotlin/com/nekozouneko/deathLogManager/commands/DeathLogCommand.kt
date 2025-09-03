@@ -43,7 +43,9 @@ class DeathLogCommand : CommandExecutor, TabExecutor {
         if(p3.size == 1) return subCommands.keys.toMutableList()
         if(p3.size == 2 &&
             (p3[0] == "help" || p3[0] == "set")
-            ) return DeathLogManager.receiveTypes.toMutableList()
+            ) return DeathLogManager.receiveTypes.filter {
+                it.startsWith(p3[1])
+        }.toMutableList()
         return mutableListOf()
     }
 }
