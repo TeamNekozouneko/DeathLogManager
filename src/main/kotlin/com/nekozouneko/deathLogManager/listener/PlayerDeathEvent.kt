@@ -52,8 +52,8 @@ class PlayerDeathEvent : Listener {
 
     private fun getSimpleDeathMessage(e: PlayerDeathEvent) : Component{
         val player = e.player
-        val killer = player.killer ?: return Component.text("${player.name}は死んだ。")
-        return Component.text("${player.name}は${killer.name}によって殺された。")
+        val killer = player.killer ?: return Component.text("${player.name}は死んだ")
+        return Component.text("${player.name}は${killer.name}に殺害された")
 
     }
 
