@@ -1,6 +1,7 @@
 package com.nekozouneko.deathLogManager
 
 import com.nekozouneko.deathLogManager.commands.DeathLogCommand
+import com.nekozouneko.deathLogManager.listener.PlayerDeathEvent
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
@@ -51,6 +52,9 @@ class DeathLogManager : JavaPlugin() {
         }else{
             server.globalRegionScheduler.runAtFixedRate(this, { databaseFlush() }, 0, FLUSH_INTERVAL)
         }
+
+        //Register Listeners
+        server.pluginManager.registerEvents(PlayerDeathEvent(), this)
     }
 
     override fun onDisable() {
