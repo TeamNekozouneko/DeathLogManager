@@ -4,6 +4,7 @@ import com.nekozouneko.deathLogManager.commands.DeathLogCommand
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
+import java.util.function.Consumer
 
 class DeathLogManager : JavaPlugin() {
     companion object {
@@ -12,6 +13,9 @@ class DeathLogManager : JavaPlugin() {
         lateinit var instance: JavaPlugin
         lateinit var dataFilePath: String
         lateinit var userDatabase: YamlConfiguration
+
+        val isFolia: Boolean = isClassExists("io.papermc.paper.threadedregions.RegionizedServer") || isClassExists("io.papermc.paper.threadedregions.RegionizedServerInitEvent")
+
         val receiveTypes = listOf(
             "each",
             "near",
@@ -19,6 +23,13 @@ class DeathLogManager : JavaPlugin() {
             "simple"
         )
         val defaultReceiveType = receiveTypes[0]
+
+        private fun isClassExists(clazz: String) : Boolean {
+            try{
+                Class.forName(clazz)
+                return true
+            }catch (_: Exception) { return false }
+        }
     }
 
     override fun onEnable() {
@@ -35,7 +46,11 @@ class DeathLogManager : JavaPlugin() {
         getCommand("deathlog")?.setExecutor(DeathLogCommand())
 
         //Scheduler
-        server.scheduler.runTaskTimer(this, Runnable { databaseFlush() }, 0, FLUSH_INTERVAL)
+        if(!isFolia){
+            server.scheduler.runTaskTimer(this, Runnable { databaseFlush() }, 0, FLUSH_INTERVAL)
+        }else{
+            server.globalRegionScheduler.runAtFixedRate(this, { databaseFlush() }, 0, FLUSH_INTERVAL)
+        }
     }
 
     override fun onDisable() {
