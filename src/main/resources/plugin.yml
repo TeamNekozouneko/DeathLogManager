@@ -19,6 +19,6 @@ permissions:
       default: true
       children:
         deathlog.switch.each: true
-        deathlog.swtich.near: true
-        deathlog.switch.hidden: true
+        deathlog.switch.near: true
+        deathlog.switch.self: true
         deathlog.switch.simple: true

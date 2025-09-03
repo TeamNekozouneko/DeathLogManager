@@ -21,6 +21,10 @@ class SetCommand : DeathLogCommand.SubCommand {
             p0.sendMessage(Languages.General.ERROR_INVALID_RECEIVE_TYPE)
             return true
         }
+        if(!p0.hasPermission("deathlog.switch.${p3[1]}")){
+            p0.sendMessage(Languages.SetCommand.ERROR_NOT_ENOUGH_PERMISSION)
+            return true
+        }
 
         val database = DeathLogManager.userDatabase
         database.set(p0.uniqueId.toString(), p3[1])

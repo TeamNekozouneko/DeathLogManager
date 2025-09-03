@@ -44,7 +44,7 @@ class DeathLogCommand : CommandExecutor, TabExecutor {
         if(p3.size == 2 &&
             (p3[0] == "help" || p3[0] == "set")
             ) return DeathLogManager.receiveTypes.filter {
-                it.startsWith(p3[1])
+                it.startsWith(p3[1]) && p0.hasPermission("deathlog.switch.${it}")
         }.toMutableList()
         return mutableListOf()
     }
