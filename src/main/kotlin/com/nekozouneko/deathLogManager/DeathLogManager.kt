@@ -50,7 +50,7 @@ class DeathLogManager : JavaPlugin() {
         if(!isFolia){
             server.scheduler.runTaskTimer(this, Runnable { databaseFlush() }, 0, FLUSH_INTERVAL)
         }else{
-            server.globalRegionScheduler.runAtFixedRate(this, { databaseFlush() }, 0, FLUSH_INTERVAL)
+            server.globalRegionScheduler.runAtFixedRate(this, { databaseFlush() }, 1, FLUSH_INTERVAL)
         }
 
         //Register Listeners
