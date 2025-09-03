@@ -40,7 +40,9 @@ class DeathLogCommand : CommandExecutor, TabExecutor {
         p2: String,
         p3: Array<out String>
     ): MutableList<String> {
-        if(p3.size == 1) return subCommands.keys.toMutableList()
+        if(p3.size == 1) return subCommands.keys.filter {
+            it.startsWith(p3[0])
+        }.toMutableList()
         if(p3.size == 2 &&
             (p3[0] == "help" || p3[0] == "set")
             ) return DeathLogManager.receiveTypes.filter {
