@@ -1,0 +1,4 @@
+name: DeathLogManager
+version: '1.0-SNAPSHOT'
+main: com.nekozouneko.deathLogManager.DeathLogManager
+api-version: '1.21'
