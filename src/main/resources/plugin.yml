@@ -1,7 +1,7 @@
 name: DeathLogManager
 version: ${project.version}
 main: com.nekozouneko.deathLogManager.DeathLogManager
-api-version: '1.21'
+api-version: ${api.version}
 author: RunQ
 description: 死亡ログの受け取り方を任意に選択できるプラグイン
 folia-supported: true
