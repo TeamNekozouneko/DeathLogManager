@@ -15,9 +15,9 @@ class PlayerDeathEvent : Listener {
         val deathLocation = player.location
 
         val database = DeathLogManager.userDatabase
-        val playerData = database.getString(player.uniqueId.toString(), DeathLogManager.defaultReceiveType) ?: return
+        val playerData = database.getString(player.uniqueId.toString(), DeathLogManager.configurations.getDefaultType()) ?: return
         var killerData: String? = null
-        if (killer != null) killerData = database.getString(killer.uniqueId.toString(), DeathLogManager.defaultReceiveType) ?: return
+        if (killer != null) killerData = database.getString(killer.uniqueId.toString(), DeathLogManager.configurations.getDefaultType()) ?: return
 
         val receivePlayers: MutableSet<Player> = mutableSetOf()
 
@@ -27,7 +27,7 @@ class PlayerDeathEvent : Listener {
 
         //Near
         val nearPlayers = deathLocation.getNearbyPlayers(10.0).filter {
-            val receiveType = database.getString(it.uniqueId.toString(), DeathLogManager.defaultReceiveType)
+            val receiveType = database.getString(it.uniqueId.toString(), DeathLogManager.configurations.getDefaultType())
             receiveType == ReceiveType.NEAR
         }
         for (nearPlayer in nearPlayers) receivePlayers.add(nearPlayer)
@@ -37,7 +37,7 @@ class PlayerDeathEvent : Listener {
 
         //Simple
         val simpleReceivers = DeathLogManager.instance.server.onlinePlayers.filter {
-            val receiveType = database.getString(it.uniqueId.toString(), DeathLogManager.defaultReceiveType)
+            val receiveType = database.getString(it.uniqueId.toString(), DeathLogManager.configurations.getDefaultType())
             receiveType == ReceiveType.SIMPLE
         }.toMutableSet()
         receivePlayers.removeAll(simpleReceivers)

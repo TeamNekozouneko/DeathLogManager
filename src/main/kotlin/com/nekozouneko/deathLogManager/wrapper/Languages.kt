@@ -54,4 +54,8 @@ object Languages {
             return "${General.PREFIX} §a受け取り方を${type}に設定しました！"
         }
     }
+    object ReloadCommand{
+        val RELOADED_SUCCESSFULLY = "§a正常にコンフィグをリロードしました！"
+        val RELOADED_CONTAINS_INVALID = "§eコンフィグをリロードしました。一部の入力が不正だったため、自動的にデフォルト値が適用された箇所があります。詳しくはコンソールをご覧ください。"
+    }
 }

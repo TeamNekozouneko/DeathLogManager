@@ -2,6 +2,7 @@ package com.nekozouneko.deathLogManager
 
 import com.nekozouneko.deathLogManager.commands.DeathLogCommand
 import com.nekozouneko.deathLogManager.listener.PlayerDeathEvent
+import com.nekozouneko.deathLogManager.wrapper.Configurations
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
@@ -13,6 +14,7 @@ class DeathLogManager : JavaPlugin() {
         lateinit var instance: JavaPlugin
         lateinit var dataFilePath: String
         lateinit var userDatabase: YamlConfiguration
+        lateinit var configurations: Configurations
 
         val isFolia: Boolean = isClassExists("io.papermc.paper.threadedregions.RegionizedServer") || isClassExists("io.papermc.paper.threadedregions.RegionizedServerInitEvent")
 
@@ -22,7 +24,6 @@ class DeathLogManager : JavaPlugin() {
             "self",
             "simple"
         )
-        val defaultReceiveType = receiveTypes[0]
 
         private fun isClassExists(clazz: String) : Boolean {
             try{
@@ -38,6 +39,8 @@ class DeathLogManager : JavaPlugin() {
 
         //Configuration
         saveDefaultConfig()
+        configurations = Configurations()
+        configurations.reloadConfig(true)
 
         //Generate Not Enough Json
         if(!databaseInitialize()){

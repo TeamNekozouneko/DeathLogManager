@@ -15,7 +15,7 @@ class InfoCommand : DeathLogCommand.SubCommand {
         }
 
         val database = DeathLogManager.userDatabase
-        val userData = database.getString(p0.uniqueId.toString(), DeathLogManager.defaultReceiveType)
+        val userData = database.getString(p0.uniqueId.toString(), DeathLogManager.configurations.getDefaultType())
 
         if(userData == null) {
             p0.sendMessage(Languages.General.ERROR_DATABASE)
