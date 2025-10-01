@@ -9,6 +9,7 @@ object Languages {
     object Command {
         val ERROR_INVALID_SUBCOMMAND = "§cサブコマンドが存在しません。(help, set, info)"
         val ERROR_EXECUTE_ONLY_PLAYER = "§cこのコマンドはプレイヤーのみ実行できます。"
+        val ERROR_NOT_ENOUGH_PERMISSION = "§cこのコマンドを実行する権限がありません。"
     }
     object HelpCommand{
         val HELP_MESSAGE = """

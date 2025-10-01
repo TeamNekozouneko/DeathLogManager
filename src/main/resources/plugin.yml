@@ -13,8 +13,6 @@ commands:
     permission: deathlog.use
 
 permissions:
-    deathlog.use:
-      default: true
     deathlog.switch.*:
       default: true
       children:
@@ -22,3 +20,13 @@ permissions:
         deathlog.switch.near: true
         deathlog.switch.self: true
         deathlog.switch.simple: true
+    deathlog.use:
+      default: true
+      children:
+        deathlog.command.help: true
+        deathlog.command.info: true
+        deathlog.command.set: true
+    deathlog.admin:
+      default: op
+      children:
+        deathlog.command.reload: true

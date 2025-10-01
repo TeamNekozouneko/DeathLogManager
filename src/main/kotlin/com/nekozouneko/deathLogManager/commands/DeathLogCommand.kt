@@ -3,6 +3,7 @@ package com.nekozouneko.deathLogManager.commands
 import com.nekozouneko.deathLogManager.DeathLogManager
 import com.nekozouneko.deathLogManager.commands.subcommands.HelpCommand
 import com.nekozouneko.deathLogManager.commands.subcommands.InfoCommand
+import com.nekozouneko.deathLogManager.commands.subcommands.ReloadCommand
 import com.nekozouneko.deathLogManager.commands.subcommands.SetCommand
 import com.nekozouneko.deathLogManager.wrapper.Languages
 import org.bukkit.command.Command
@@ -14,7 +15,8 @@ class DeathLogCommand : CommandExecutor, TabExecutor {
     private val subCommands = mapOf<String, SubCommand>(
         "help" to HelpCommand(),
         "info" to InfoCommand(),
-        "set" to SetCommand()
+        "set" to SetCommand(),
+        "reload" to ReloadCommand()
     )
 
     interface SubCommand {
@@ -31,6 +33,11 @@ class DeathLogCommand : CommandExecutor, TabExecutor {
             p0.sendMessage(Languages.Command.ERROR_INVALID_SUBCOMMAND)
             return true
         }
+        if(!p0.hasPermission("deathlog.command.${p3[0]}")){
+            //権限確認
+            p0.sendMessage(Languages.Command.ERROR_NOT_ENOUGH_PERMISSION)
+            return true
+        }
         return subCommands[p3[0]]?.handle(p0, p1, p2, p3) ?: return false
     }
 
@@ -41,9 +48,10 @@ class DeathLogCommand : CommandExecutor, TabExecutor {
         p3: Array<out String>
     ): MutableList<String> {
         if(p3.size == 1) return subCommands.keys.filter {
-            it.startsWith(p3[0])
+            it.startsWith(p3[0]) && p0.hasPermission("deathlog.command.${it}")
         }.toMutableList()
         if(p3.size == 2 &&
+            p0.hasPermission("deathlog.command.${p3[0]}") &&
             (p3[0] == "help" || p3[0] == "set")
             ) return DeathLogManager.receiveTypes.filter {
                 it.startsWith(p3[1]) && p0.hasPermission("deathlog.switch.${it}")

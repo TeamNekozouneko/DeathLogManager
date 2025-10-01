@@ -36,6 +36,9 @@ class DeathLogManager : JavaPlugin() {
         instance = this
         dataFilePath = dataFolder.path + File.separator + "users.yml"
 
+        //Configuration
+        saveDefaultConfig()
+
         //Generate Not Enough Json
         if(!databaseInitialize()){
             logger.severe("データファイルの読み込みに失敗しました。")
