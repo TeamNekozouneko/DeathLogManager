@@ -5,7 +5,6 @@ import com.nekozouneko.deathLogManager.listener.PlayerDeathEvent
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
-import java.util.function.Consumer
 
 class DeathLogManager : JavaPlugin() {
     companion object {
