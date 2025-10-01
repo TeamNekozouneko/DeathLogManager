@@ -12,6 +12,7 @@
     * `deathlog.switch.self`
     * `deathlog.switch.simple`
 ## 各種受け取り方
+デフォルトの受け取り方はconfig.ymlから設定してください。
 ### each
 自身が死んでしまった際や、誰かを倒した際の死亡ログのみ表示します。
 ### near
