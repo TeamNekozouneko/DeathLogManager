@@ -20,6 +20,7 @@ permissions:
         deathlog.switch.near: true
         deathlog.switch.self: true
         deathlog.switch.simple: true
+        deathlog.switch.vanilla: true
     deathlog.use:
       default: true
       children:
