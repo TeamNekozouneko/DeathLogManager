@@ -37,10 +37,16 @@ class PlayerDeathEvent : Listener {
 
         //Simple
         val simpleReceivers = DeathLogManager.instance.server.onlinePlayers.filter {
-            val receiveType = database.getString(it.uniqueId.toString(), DeathLogManager.configurations.getDefaultType())
-            receiveType == ReceiveType.SIMPLE
+            database.getString(it.uniqueId.toString()) == ReceiveType.SIMPLE
         }.toMutableSet()
         receivePlayers.removeAll(simpleReceivers)
+
+        //Vanilla
+        for (p in DeathLogManager.instance.server.onlinePlayers.filter {
+            database.getString(it.uniqueId.toString()) == ReceiveType.VANILLA
+        }) {
+            receivePlayers.add(p)
+        }
 
         //Send Death Message
         val originalMessage = e.deathMessage() ?: return
@@ -61,5 +67,6 @@ class PlayerDeathEvent : Listener {
         val NEAR = "near"
         val SELF = "self"
         val SIMPLE = "simple"
+        val VANILLA = "vanilla"
     }
 }

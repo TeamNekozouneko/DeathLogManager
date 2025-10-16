@@ -22,7 +22,8 @@ class DeathLogManager : JavaPlugin() {
             "each",
             "near",
             "self",
-            "simple"
+            "simple",
+            "vanilla"
         )
 
         private fun isClassExists(clazz: String) : Boolean {

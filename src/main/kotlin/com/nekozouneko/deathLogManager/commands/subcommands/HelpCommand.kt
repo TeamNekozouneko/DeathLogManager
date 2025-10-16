@@ -23,6 +23,7 @@ class HelpCommand : DeathLogCommand.SubCommand {
         if(p3[1] == "near") p0.sendMessage(Languages.HelpCommand.ReceiveHelps.NEAR)
         if(p3[1] == "self") p0.sendMessage(Languages.HelpCommand.ReceiveHelps.SELF)
         if(p3[1] == "simple") p0.sendMessage(Languages.HelpCommand.ReceiveHelps.SIMPLE)
+        if(p3[1] == "vanilla") p0.sendMessage(Languages.HelpCommand.ReceiveHelps.VANILLA)
         return true
     }
 }
